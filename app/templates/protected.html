@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center">
+    Link <span style="color: #ffc107;">{{ link.short_url }}</span> protected.
+    <br>
+    Enter password:
+</h2>
+
+<div class="mx-auto text-center">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.password(class='form-control') }}
+        </div>
+        <div>
+            {{ form.submit(class='btn btn-success') }}
+        </div>
+    </form>
+</div>
+
+{% if incorrect_password %}
+    <script>
+        showAlert("Incorrect password. Try again.")
+    </script>
+{% endif %}
+
+{% endblock %}

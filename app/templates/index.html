@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mt-2 mb-2 text-center">{{ config['INSTANCE_NAME'] }}</h1>
+
+<div class="mx-auto text-center">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.original_url.label(class='form-label') }}
+            {{ form.original_url(class='form-control', placeholder='https://example.com', value='https://') }}
+        </div>
+        <div class="mb-3">
+            {{ form.submit(class='btn btn-success') }}
+            <button class="btn btn-danger" onclick="showOptionsBlock()" type="button">Options</button>
+        </div>
+        <div id="options-block">
+            <div class="mb-3">
+                {{ form.custom_short_url.label(class='form-label') }}
+                {{ form.custom_short_url(class='form-control') }}
+            </div>
+            <div class="mb-3">
+                {{ form.deletion_date.label(class='form-label') }}
+                {{ form.deletion_date(class='form-control') }}
+            </div>
+            <div class="mb-3">
+                {{ form.max_visits.label(class='form-label') }}
+                {{ form.max_visits(class='form-control') }}
+            </div>
+            <div class="mb-3">
+                {{ form.password.label(class='form-label') }}
+                {{ form.password(class='form-control') }}
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function showOptionsBlock() {
+        var div = document.getElementById("options-block");
+        if (div.style.display === "none") {
+            div.style.display = "block"; // show div
+        } else {
+            div.style.display = "none"; // hide div
+        }
+    }
+</script>
+{% endblock %}

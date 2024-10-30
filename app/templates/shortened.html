@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mt-2 mb-3 text-center">{{ config['INSTANCE_NAME'] }}</h1>
+
+<div class="input-group mb-3">
+    <input class="form-control" type="text" value="{{ request.host_url + link.short_url }}" readonly id="shortenedURL">
+    <button class="btn btn-outline-secondary" type="button" onclick="copyURL()">Copy</button>
+</div>
+
+<div class="text-center">
+    <a href="{{ url_for('index') }}">
+        <button class="btn btn-danger mb-5">Short another URL</button>
+    </a>
+</div>
+
+<div class="text-center">
+    <span>Check link stats by adding + to the URL</span><br>
+    <a href="{{ request.host_url + link.short_url + '+' }}">{{ request.host_url + link.short_url + '+' }}</a>
+</div>
+
+<script>
+    function copyURL() {
+        var input = document.getElementById("shortenedURL");
+
+        input.select();
+        input.setSelectionRange(0, 99999);
+
+        document.execCommand("copy")
+    }
+</script>
+{% endblock %}

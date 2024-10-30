@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center mb-3">Link <span style="color: #ffc107;">{{ link.short_url }}</span> stats</h2>
+
+<table class="table table-striped">
+    <tr>
+        <td>Short URL</td>
+        <td>
+            <a href="{{ request.host_url + link.short_url }}">{{ request.host_url + link.short_url }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td>Original URL</td>
+        <td>
+            {% if link.password %}
+            <i>protected</i>
+            {% else %}
+            <a href="{{ request.host_url + link.short_url }}">{{ link.original_url }}</a>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td>Created At</td>
+        <td>{{ moment(link.created_at).format('DD/MM/YYYY HH:mm') }}</td>
+    </tr>
+    <tr>
+        <td>Total Visits</td>
+        <td>{{ link.visit_count }}</td>
+    </tr>
+</table>
+{% endblock %}
